@@ -12,6 +12,7 @@ app.get('/api/state', (req, res) => {
 });
 
 app.post('/api/spin', (req, res) => {
+  console.log("Spin endpoint called from main branch");
   const spinUseCase = ServiceLocator.get('SpinGameUseCase');
   const betAmount = req.body.bet || 100; 
   const { balance, result } = spinUseCase.execute(betAmount);
