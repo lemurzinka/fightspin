@@ -14,9 +14,9 @@ app.get('/api/state', (req, res) => {
 app.post('/api/spin', (req, res) => {
   console.log("Spin endpoint called from main branch");
   const spinUseCase = ServiceLocator.get('SpinGameUseCase');
- const result = spinUseCase.execute(999);
-
-  res.json(result);
+  const betAmount = req.body.bet || 100; 
+  const { balance, result } = spinUseCase.execute(betAmount);
+  res.json({ balance, result }); 
 });
 
 app.listen(5000, () => console.log('Server running on port 5000'));

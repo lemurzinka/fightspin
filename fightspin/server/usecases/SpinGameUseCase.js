@@ -2,16 +2,15 @@ class SpinGameUseCase {
   constructor(repository, rngExecutor) {
     this.repository = repository;
     this.rngExecutor = rngExecutor;
-    this.betAmount = 100; 
   }
 
-  execute() {
+  execute(betAmount) {
     const result = this.rngExecutor();
 
     if (result.status === "WIN") {
       this.repository.updateBalance(result.payout);
     } else {
-      this.repository.updateBalance(-this.betAmount); 
+      this.repository.updateBalance(-betAmount); 
     }
 
     this.repository.saveResult(result);
