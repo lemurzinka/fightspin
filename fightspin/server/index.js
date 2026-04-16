@@ -14,7 +14,8 @@ app.get('/api/state', (req, res) => {
 app.post('/api/spin', (req, res) => {
   console.log("Spin endpoint called from main branch");
   const spinUseCase = ServiceLocator.get('SpinGameUseCase');
-  const result = spinUseCase.execute();
+ const result = spinUseCase.execute(999);
+
   res.json(result);
 });
 
