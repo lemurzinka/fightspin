@@ -23,12 +23,13 @@ function App() {
   return (
     <div>
       <h1>FightSpin</h1>
-      <input 
-        type="number" 
-        value={bet} 
-        onChange={(e) => setBet(Number(e.target.value))} 
-        placeholder="Enter your bet"
-      />
+     <input 
+  type="number" 
+  value={bet} 
+  onChange={(e) => setBet(parseInt(e.target.value, 10) || 0)} 
+  placeholder="Enter your bet"
+/>
+
       <SlotView state={state} onSpin={handleSpin} />
     </div>
   );
