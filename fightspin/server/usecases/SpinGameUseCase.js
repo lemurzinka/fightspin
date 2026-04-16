@@ -1,23 +1,24 @@
-
 class SpinGameUseCase {
-  constructor(gameRepository, rng) {
-    this.gameRepository = gameRepository;
-    this.rng = rng;
+  constructor(repository, rngExecutor) {
+    this.repository = repository;
+    this.rngExecutor = rngExecutor;
+    this.betAmount = 100; 
   }
 
   execute() {
-    const result = this.rng();
-    if (result === "WIN") {
-      this.gameRepository.updateBalance(10);
+    const result = this.rngExecutor();
+
+    if (result.status === "WIN") {
+      this.repository.updateBalance(result.payout);
     } else {
-      this.gameRepository.updateBalance(-5);
+      this.repository.updateBalance(-this.betAmount); 
     }
-    this.gameRepository.saveResult(result);
+
+    this.repository.saveResult(result);
 
     return {
-      balance: this.gameRepository.getBalance(),
-      result,
-      history: this.gameRepository.getHistory()
+      balance: this.repository.getBalance(),
+      result
     };
   }
 }

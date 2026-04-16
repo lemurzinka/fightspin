@@ -3,7 +3,7 @@ class GameRepository {
     if (GameRepository.instance) {
       return GameRepository.instance;
     }
-    this.balance = 100;
+    this.balance = 1000;
     this.history = [];
     GameRepository.instance = this;
   }

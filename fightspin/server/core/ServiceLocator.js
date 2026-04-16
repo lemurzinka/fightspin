@@ -1,7 +1,7 @@
 const GameRepository = require('../repository/GameRepository');
 const SpinGameUseCase = require('../usecases/SpinGameUseCase');
 const RNGContext = require('../utils/RNGContext');
-const { WinLoseStrategy, WeightedStrategy, BonusEveryThirdStrategy } = require('../utils/RNG');
+const { WinLoseStrategy, WeightedStrategy, BonusEveryThirdStrategy, SymbolStrategy } = require('../utils/RNG');
 
 class ServiceLocator {
   constructor() {
@@ -14,7 +14,7 @@ class ServiceLocator {
 
     
     const rng = new RNGContext();
-    rng.setStrategy(new BonusEveryThirdStrategy()); 
+    rng.setStrategy(new SymbolStrategy()); 
 
     const spinUseCase = new SpinGameUseCase(repository, () => rng.execute());
 
